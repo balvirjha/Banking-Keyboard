@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/light_silver"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sabButton"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        android:background="#3300ff00"
+        android:gravity="center"
+        android:padding="4dp"
+        android:scaleType="fitCenter"
+        android:text="SAB KEY"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:id="@+id/emojiCategorytab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/deleteButton"
+        android:layout_toRightOf="@+id/sabButton"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:hint="search"
+        android:nextFocusLeft="@id/emojiCategorytab"
+        android:nextFocusUp="@id/emojiCategorytab" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_background"
+        android:scaleType="fitCenter"
+        android:text="&#x232B;" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboardHeightContainer"
+        android:layout_below="@+id/deleteButton"
+        android:gravity="bottom">
+
+        <ListView
+            android:id="@+id/mobile_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:entries="@array/demoEntries" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/emojiKeyboard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ebebeb">
+
+        </android.support.v4.view.ViewPager>
+    </RelativeLayout>
+</RelativeLayout>
