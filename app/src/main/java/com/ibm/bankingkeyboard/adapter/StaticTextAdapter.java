@@ -11,7 +11,7 @@ public class StaticTextAdapter extends BaseTextAdapter {
 
     public StaticTextAdapter(Context context, String[] emojiTextsAsStrings, ArrayList<Integer> iconIds) {
         super((TextKeyboardService) context);
-        this.emojiTexts =  new ArrayList<String>(Arrays.asList(emojiTextsAsStrings));
+        this.emojiTexts = new ArrayList<String>(Arrays.asList(emojiTextsAsStrings));
         this.iconIds = iconIds;
     }
 }

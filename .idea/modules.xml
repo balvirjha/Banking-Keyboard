@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BankingKeyboard.iml" filepath="$PROJECT_DIR$/BankingKeyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Banking-Keyboard.iml" filepath="$PROJECT_DIR$/Banking-Keyboard.iml" />
+      <module fileurl="file://C:\Users\BalvirJha\StudioProjects\Banking-Keyboard\BankingKeyboard.iml" filepath="C:\Users\BalvirJha\StudioProjects\Banking-Keyboard\BankingKeyboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

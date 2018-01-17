@@ -40,6 +40,9 @@ public class TextPagerAdapter extends PagerAdapter {
         pages.add(new KeyboardSinglePageView(context,
                 new RecyclerViewAdapter(context,
                         Arrays.copyOf(objects, objects.length, String[].class))).getView());
+        pages.add(new KeyboardSinglePageView(context,
+                new RecyclerViewAdapter(context,
+                        Arrays.copyOf(objects, objects.length, String[].class))).getView());
 //        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.thingsEmojiTexts, icons.getThingsIconIds())).getView());
 //        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.natureEmojiTexts, icons.getNatureIconIds())).getView());
 //        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.transEmojiTexts, icons.getTransIconIds())).getView());

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ibm.bankingkeyboard.view.TextKeyboardViewNew;
 import com.klinker.android.emoji_keyboard_trial.R;
 
+
 public class TextKeyboardService extends InputMethodService {
 
     private TextKeyboardViewNew emojiKeyboardView;
@@ -94,7 +95,8 @@ public class TextKeyboardService extends InputMethodService {
                 )
         );
     }
-    public void sendDownAndUpKeyEvent(int keyEventCode, int flags){
+
+    public void sendDownAndUpKeyEvent(int keyEventCode, int flags) {
         sendDownKeyEvent(keyEventCode, flags);
         sendUpKeyEvent(keyEventCode, flags);
     }
