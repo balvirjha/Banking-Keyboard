@@ -48,6 +48,141 @@
 
 
     <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/deleteButton"
+        android:layout_marginTop="20dp"
+        android:gravity="bottom">
+
+        <ListView
+            android:id="@+id/mobile_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:entries="@array/demoEntries" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/emojiKeyboard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/emojiKeyboardHeight"
+            android:layout_alignParentBottom="true"
+            android:background="#ebebeb">
+
+        </android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:id="@+id/intropagesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/emojiKeyboardHeight"
+            android:layout_alignParentBottom="true"
+            android:background="#33ff00ff">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/intropages"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+            </android.support.v4.view.ViewPager>
+
+            <RelativeLayout
+                android:id="@+id/viewPagerIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center">
+
+                <View
+                    android:id="@+id/btn_finish"
+                    android:layout_width="12dip"
+                    android:layout_height="12dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dip"
+                    android:background="@drawable/selecteditem_dot" />
+
+                <View
+                    android:id="@+id/btn_next"
+                    android:layout_width="12dip"
+                    android:layout_height="12dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dip"
+                    android:layout_toRightOf="@+id/btn_finish"
+                    android:background="@drawable/nonselecteditem_dot" />
+
+                <View
+                    android:id="@+id/btn_last"
+                    android:layout_width="12dip"
+                    android:layout_height="12dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/btn_next"
+                    android:background="@drawable/nonselecteditem_dot" />
+
+                <TextView
+                    android:id="@+id/skipOrDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:text="SKIP"
+                    android:textColor="#ff00ff" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/light_silver"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sabButton"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        android:background="#3300ff00"
+        android:gravity="center"
+        android:padding="4dp"
+        android:scaleType="fitCenter"
+        android:text="SAB KEY"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:id="@+id/emojiCategorytab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/deleteButton"
+        android:layout_toRightOf="@+id/sabButton"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:hint="search"
+        android:nextFocusLeft="@id/emojiCategorytab"
+        android:nextFocusUp="@id/emojiCategorytab" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_background"
+        android:scaleType="fitCenter"
+        android:text="&#x232B;" />
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/keyboardHeightContainer"
         android:layout_below="@+id/deleteButton"
@@ -132,4 +267,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</RelativeLayout>-->

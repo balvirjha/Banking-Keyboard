@@ -3,16 +3,21 @@ package com.ibm.bankingkeyboard.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +26,8 @@ import com.example.balvirjha.bankingkeyboard.adapter.IntroPagerAdapter;
 import com.ibm.bankingkeyboard.TextKeyboardService;
 import com.ibm.bankingkeyboard.adapter.TextPagerAdapter;
 import com.klinker.android.emoji_keyboard_trial.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by BalvirJha on 06-01-2018.
@@ -39,6 +46,12 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
     private int height;
     private View btn_finish, btn_next, btn_last, introLayout;
     private TextView skipOrDone;
+    private ListView mobile_list;
+    ArrayList<String> StoreContacts;
+    ArrayAdapter<String> arrayAdapter;
+    Cursor cursor;
+    String name, phonenumber;
+    View topLayout,intropagesLayout;
 
     public TextKeyboardViewNew(Context context) {
         super(context);
@@ -55,6 +68,23 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         initialize(context);
     }
 
+    public void GetContactsIntoArrayList() {
+
+        cursor = textKeyboardService.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+
+            name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+            phonenumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+            StoreContacts.add(name + " " + ":" + " " + phonenumber);
+        }
+
+        cursor.close();
+
+    }
+
     private void initialize(final Context context) {
 
         textKeyboardService = (TextKeyboardService) context;
@@ -62,7 +92,20 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         layout = (RelativeLayout) inflater.inflate(R.layout.keyboard_main, null);
+        mobile_list = (ListView) layout.findViewById(R.id.mobile_list);
+        topLayout = (View)layout.findViewById(R.id.topLayout);
+        intropagesLayout= (View)layout.findViewById(R.id.intropagesLayout);
+        StoreContacts = new ArrayList<>();
+        GetContactsIntoArrayList();
+        if (StoreContacts != null) {
+            arrayAdapter = new ArrayAdapter<String>(
+                    context,
+                    android.R.layout.simple_list_item_1, android.R.id.text1, StoreContacts);
 
+            mobile_list.setAdapter(arrayAdapter);
+        } else {
+
+        }
         viewPager = (ViewPager) layout.findViewById(R.id.emojiKeyboard);
         introPager = (ViewPager) layout.findViewById(R.id.intropages);
 
@@ -71,11 +114,11 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         btn_last = (View) layout.findViewById(R.id.btn_last);
         btn_next = (View) layout.findViewById(R.id.btn_next);
         skipOrDone = (TextView) layout.findViewById(R.id.skipOrDone);
-        introLayout = (View) layout.findViewById(R.id.introLayout);
+        //introLayout = (View) layout.findViewById(R.id.introLayout);
         skipOrDone.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                introLayout.setVisibility(GONE);
+               // introLayout.setVisibility(GONE);
             }
         });
         pagerSlidingTabStrip = (EditText) layout.findViewById(R.id.emojiCategorytab);
@@ -86,14 +129,17 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
             public void onClick(View view) {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                 pagerSlidingTabStrip.requestFocus();
+                viewPager.setVisibility(VISIBLE);
+                introPager.setVisibility(VISIBLE);
+                intropagesLayout.setVisibility(VISIBLE);
             }
         });
         pagerSlidingTabStrip.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 Toast.makeText(context, "Focus changes", Toast.LENGTH_SHORT).show();
-                textPagerAdapter.setHeight(800);
-                introPagerAdapter.setHeight(850);
+                //textPagerAdapter.setHeight(800);
+                //introPagerAdapter.setHeight(850);
             }
         });
 
@@ -147,7 +193,24 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
 
         viewPager.setCurrentItem(1);
         introPager.setCurrentItem(0);
+        viewPager.setVisibility(GONE);
+        introPager.setVisibility(GONE);
+        intropagesLayout.setVisibility(GONE);
 
+        mobile_list.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                viewPager.setVisibility(GONE);
+                introPager.setVisibility(GONE);
+                intropagesLayout.setVisibility(GONE);
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+            }
+        });
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
     }
 

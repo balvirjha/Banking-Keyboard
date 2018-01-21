@@ -2,7 +2,8 @@
 <resources>
 
     <dimen name="divider_padding">12dp</dimen>
-    <dimen name="keyboardHeight">230dp</dimen>
-    <dimen name="keyboardHeightContainer">300dp</dimen>
+    <dimen name="keyboardHeight">300dp</dimen>
+    <dimen name="keyboardHeightContainer">350dp</dimen>
     <dimen name="emojiKeyboardHeight">230dp</dimen>
+
 </resources>
