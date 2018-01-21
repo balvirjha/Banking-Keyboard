@@ -51,7 +51,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
     ArrayAdapter<String> arrayAdapter;
     Cursor cursor;
     String name, phonenumber;
-    View topLayout,intropagesLayout;
+    View topLayout, intropagesLayout;
 
     public TextKeyboardViewNew(Context context) {
         super(context);
@@ -93,8 +93,8 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
 
         layout = (RelativeLayout) inflater.inflate(R.layout.keyboard_main, null);
         mobile_list = (ListView) layout.findViewById(R.id.mobile_list);
-        topLayout = (View)layout.findViewById(R.id.topLayout);
-        intropagesLayout= (View)layout.findViewById(R.id.intropagesLayout);
+        topLayout = (View) layout.findViewById(R.id.topLayout);
+        intropagesLayout = (View) layout.findViewById(R.id.intropagesLayout);
         StoreContacts = new ArrayList<>();
         GetContactsIntoArrayList();
         if (StoreContacts != null) {
@@ -114,11 +114,11 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         btn_last = (View) layout.findViewById(R.id.btn_last);
         btn_next = (View) layout.findViewById(R.id.btn_next);
         skipOrDone = (TextView) layout.findViewById(R.id.skipOrDone);
-        //introLayout = (View) layout.findViewById(R.id.introLayout);
+        intropagesLayout = (View) layout.findViewById(R.id.intropagesLayout);
         skipOrDone.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               // introLayout.setVisibility(GONE);
+                intropagesLayout.setVisibility(GONE);
             }
         });
         pagerSlidingTabStrip = (EditText) layout.findViewById(R.id.emojiCategorytab);
@@ -131,7 +131,9 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
                 pagerSlidingTabStrip.requestFocus();
                 viewPager.setVisibility(VISIBLE);
                 introPager.setVisibility(VISIBLE);
-                intropagesLayout.setVisibility(VISIBLE);
+                if (intropagesLayout != null) {
+                    intropagesLayout.setVisibility(VISIBLE);
+                }
             }
         });
         pagerSlidingTabStrip.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -195,7 +197,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         introPager.setCurrentItem(0);
         viewPager.setVisibility(GONE);
         introPager.setVisibility(GONE);
-        intropagesLayout.setVisibility(GONE);
+        //intropagesLayout.setVisibility(GONE);
 
         mobile_list.setOnScrollListener(new AbsListView.OnScrollListener() {
 
