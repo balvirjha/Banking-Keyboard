@@ -1,48 +1,80 @@
 package com.ibm.bankingkeyboard.adapter
 
-import android.app.LauncherActivity.ListItem
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.ibm.bankingkeyboard.ContactModal
 import com.klinker.android.emoji_keyboard_trial.R
 
 
 /**
  * Created by balvirjha on 1/21/18.
  */
-class CustomContactListAdapter(context: Context, dataList: List<ContactModal>) : BaseAdapter() {
+class CustomContactListAdapter(context: Context) : BaseAdapter() {
 
-    private var dataListFresh: List<ContactModal>? = null
-    private var layoutInflater: LayoutInflater? = null
+    private val TYPE_ITEM = 0
+    private val TYPE_SEPARATOR = 1
 
-    private val VIEW_TYPE_NONE = 0
-    private val VIEW_TYPE_SECTION = 1
-    private val VIEW_TYPE_ITEM = 2
+    private var mData = ArrayList<String>()
+    private var sectionHeader = ArrayList<Any>()
+    private var mInflater: LayoutInflater? = null
 
     init {
-        this.dataListFresh = dataList
-        this.layoutInflater = LayoutInflater.from(context);
+        mInflater = context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        if (getItemViewType(position) == VIEW_TYPE_SECTION) {
-            return getSectionView(position, convertView, parent!!)
-        } else if (getItemViewType(position) == VIEW_TYPE_ITEM) {
-            return getItemView(position, convertView, parent!!)
-        }
-        return null
+    fun addItem(item: String) {
+        mData.add(item)
+        notifyDataSetChanged()
     }
 
-    override fun getItem(position: Int): ContactModal? {
-        if (dataListFresh!!.isEmpty()) {
-            return null;
+    fun addSectionHeaderItem(item: String) {
+        mData.add(item)
+        sectionHeader.add(mData.size - 1)
+        notifyDataSetChanged()
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        if (sectionHeader.contains(position)) return TYPE_SEPARATOR else return TYPE_ITEM
+    }
+
+    override fun getViewTypeCount(): Int {
+        return 2
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        var holder: ViewHolder? = null
+        var rowType = getItemViewType(position)
+        var convertviewVar = convertView
+
+        if (convertviewVar == null) {
+            holder = ViewHolder()
+            when (rowType) {
+                TYPE_ITEM -> {
+                    convertviewVar = mInflater?.inflate(R.layout.contacts_list_item, null)
+                    holder!!.textView = convertviewVar?.findViewById(R.id.phoneNumber) as TextView
+
+                }
+                TYPE_SEPARATOR -> {
+                    convertviewVar = mInflater?.inflate(R.layout.snippet_item1, null)
+                    holder!!.textView = convertviewVar?.findViewById(R.id.text) as TextView
+                }
+            }
+            convertviewVar?.setTag(holder)
         } else {
-            return dataListFresh!!.get(position)
+            holder = convertviewVar?.tag as ViewHolder
         }
+        holder!!.textView?.setText(mData[position])
+
+        return convertviewVar!!
+    }
+
+    override fun getItem(position: Int): Any {
+        return mData.get(position)
     }
 
     override fun getItemId(position: Int): Long {
@@ -50,85 +82,10 @@ class CustomContactListAdapter(context: Context, dataList: List<ContactModal>) :
     }
 
     override fun getCount(): Int {
-        if (dataListFresh != null) return dataListFresh!!.size!! else return 0
+        return mData.size
     }
 
-    private fun getItemView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-        val itemViewHolder: ItemViewHolder
-        if (convertView == null) {
-            convertView = layoutInflater?.inflate(R.layout.contacts_list_item, parent, false)
-            itemViewHolder = ItemViewHolder(convertView!!)
-            convertView!!.tag = itemViewHolder
-        } else {
-            itemViewHolder = convertView.tag as ItemViewHolder
-        }
-        val listItem = getItem(position) as ListItem
-        itemViewHolder.setMessage(listItem.getMessage())
-        itemViewHolder.setMessageLine2(listItem.getMessageLine2())
-        return convertView
-    }
-
-    private fun getSectionView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-        val sectionViewHolder: SectionViewHolder
-        if (convertView == null) {
-            convertView = layoutInflater?.inflate(R.layout.layout_list_section, parent, false)
-            sectionViewHolder = SectionViewHolder(convertView)
-            convertView!!.tag = sectionViewHolder
-        } else {
-            sectionViewHolder = convertView.tag as SectionViewHolder
-        }
-        sectionViewHolder.setTitle((getItem(position) as ListSection).getTitle())
-        return convertView
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        if (count > 0) {
-            val listData = getItem(position)
-            return if (listData is ListSection) {
-                VIEW_TYPE_SECTION
-            } else if (listData is ListItem) {
-                VIEW_TYPE_ITEM
-            } else {
-                VIEW_TYPE_NONE
-            }
-        } else {
-            return VIEW_TYPE_NONE
-        }
-    }
-
-    override fun getViewTypeCount(): Int {
-        return 3
-    }
-
-    inner class SectionViewHolder(itemView: View) {
-        var tvTitle: TextView
-
-        init {
-            tvTitle = itemView.findViewById(R.id.text_view_title) as TextView
-        }
-
-        fun setTitle(title: String) {
-            tvTitle.text = title
-        }
-    }
-
-    internal inner class ItemViewHolder(itemView: View) {
-        var tvMessage: TextView
-        var tvMessageLine2: TextView
-
-        init {
-            tvMessage = itemView.findViewById(R.id.text_view_message) as TextView
-            tvMessageLine2 = itemView.findViewById(R.id.text_view_message_line_2) as TextView
-        }
-
-        fun setMessage(message: String) {
-            tvMessage.text = message
-        }
-
-        fun setMessageLine2(messageLine2: String) {
-            tvMessageLine2.text = messageLine2
-        }
+    class ViewHolder {
+        var textView: TextView? = null
     }
 }

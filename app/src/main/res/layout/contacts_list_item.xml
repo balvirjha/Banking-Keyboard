@@ -2,24 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/experimental"
+    android:background="@android:color/transparent"
     android:gravity="center">
 
     <TextView
-        android:id="@android:id/text1"
-        android:layout_width="match_parent"
+        android:id="@+id/phoneNumber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_margin="5dp"
         android:clickable="true"
+        android:gravity="center_vertical"
         android:text="Balvir Jha"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
-        android:src="@android:drawable/btn_plus" />
+        android:src="@android:drawable/ic_menu_add" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/phoneNumber"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+    </View>
 </RelativeLayout>

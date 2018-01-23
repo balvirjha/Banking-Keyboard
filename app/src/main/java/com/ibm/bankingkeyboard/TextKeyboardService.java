@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ibm.bankingkeyboard.view.TextKeyboardViewNew;
@@ -19,7 +20,7 @@ import com.klinker.android.emoji_keyboard_trial.R;
 
 public class TextKeyboardService extends InputMethodService {
 
-    private TextKeyboardViewNew emojiKeyboardView;
+    private TextKeyboardViewNew textKeyboardViewNew;
 
     private InputConnection inputConnection;
 
@@ -46,6 +47,7 @@ public class TextKeyboardService extends InputMethodService {
         super.onCreate();
     }
 
+
     @Override
     public View onCreateInputView() {
 
@@ -54,10 +56,10 @@ public class TextKeyboardService extends InputMethodService {
         previousInputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         iBinder = this.getWindow().getWindow().getAttributes().token;
 
-        emojiKeyboardView = (TextKeyboardViewNew) getLayoutInflater()
+        textKeyboardViewNew = (TextKeyboardViewNew) getLayoutInflater()
                 .inflate(R.layout.text_keyboard_layout, null);
 
-        return emojiKeyboardView.getView();
+        return textKeyboardViewNew.getView();
     }
 
     @Override
@@ -68,6 +70,11 @@ public class TextKeyboardService extends InputMethodService {
 
     public void sendText(String text) {
         inputConnection.commitText(text, 1);
+    }
+
+    @Override
+    public boolean onEvaluateInputViewShown() {
+        return super.onEvaluateInputViewShown();
     }
 
     public void sendDownKeyEvent(int keyEventCode, int flags) {
@@ -109,7 +116,7 @@ public class TextKeyboardService extends InputMethodService {
 
         try {
             previousInputMethodManager.switchToLastInputMethod(iBinder);
-        } catch (Throwable t) { // java.lang.NoSuchMethodError if API_level<11
+        } catch (Throwable t) {
             Context context = getApplicationContext();
             CharSequence text = "Unfortunately input method switching isn't supported in your version of Android! You will have to do it manually :(";
             int duration = Toast.LENGTH_SHORT;
@@ -117,5 +124,9 @@ public class TextKeyboardService extends InputMethodService {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    public void redirectClickEvent(View view) {
+        sendText(((TextView) view).getText().toString());
     }
 }

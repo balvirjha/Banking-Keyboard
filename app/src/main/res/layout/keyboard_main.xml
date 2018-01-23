@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@color/light_silver"
+    android:background="#bF232426"
     android:gravity="bottom"
     android:orientation="vertical">
 
@@ -60,6 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
             android:entries="@array/demoEntries" />
 
         <android.support.v4.view.ViewPager
@@ -75,6 +79,7 @@
             android:id="@+id/intropagesLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/emojiKeyboardHeight"
+            android:visibility="gone"
             android:layout_alignParentBottom="true"
             android:background="#33ff00ff">
 

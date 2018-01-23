@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ibm.bankingkeyboard.TextKeyboardService;
 import com.ibm.bankingkeyboard.constants.UTFTexts;
 import com.ibm.bankingkeyboard.view.KeyboardSinglePageView;
 import com.ibm.bankingkeyboard.view.RecyclerViewAdapter;
@@ -25,10 +26,11 @@ public class TextPagerAdapter extends PagerAdapter {
     private ViewPager pager;
     private ArrayList<View> pages;
     private int keyboardHeight;
+    private TextKeyboardService textKeyboardService;
 
     public TextPagerAdapter(Context context, ViewPager pager, int keyboardHeight) {
         super();
-
+        textKeyboardService = (TextKeyboardService) context;
         this.pager = pager;
         this.keyboardHeight = keyboardHeight;
         this.pages = new ArrayList<View>();
@@ -36,18 +38,9 @@ public class TextPagerAdapter extends PagerAdapter {
         ArrayList list1 = new ArrayList(Arrays.asList(UTFTexts.numberTexts));
         list1.addAll(Arrays.asList(UTFTexts.capsAlphabetsTexts));
         Object[] objects = list1.toArray();
-        //pages.add(new KeyboardSinglePageView(context, new RecentTextAdapter(context)).getView());
         pages.add(new KeyboardSinglePageView(context,
                 new RecyclerViewAdapter(context,
                         Arrays.copyOf(objects, objects.length, String[].class))).getView());
-        pages.add(new KeyboardSinglePageView(context,
-                new RecyclerViewAdapter(context,
-                        Arrays.copyOf(objects, objects.length, String[].class))).getView());
-//        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.thingsEmojiTexts, icons.getThingsIconIds())).getView());
-//        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.natureEmojiTexts, icons.getNatureIconIds())).getView());
-//        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.transEmojiTexts, icons.getTransIconIds())).getView());
-//        pages.add(new KeyboardSinglePageView(context, new StaticTextAdapter(context, UTFTexts.otherEmojiTexts, icons.getOtherIconIds())).getView());
-
     }
 
     public void setHeight(int height) {

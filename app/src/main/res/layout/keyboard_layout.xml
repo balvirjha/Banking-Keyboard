@@ -19,6 +19,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="1"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -31,6 +32,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="2"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -43,6 +45,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="3"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -55,6 +58,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="4"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -67,6 +71,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="5"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -79,6 +84,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="6"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -91,6 +97,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="7"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -103,6 +110,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="8"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -115,6 +123,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="9"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -127,6 +136,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="0"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -148,6 +158,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="q"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -160,6 +171,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="w"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -172,6 +184,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="e"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -184,6 +197,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="r"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -196,6 +210,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="t"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -208,6 +223,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="y"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -220,6 +236,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="u"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -232,6 +249,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="i"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -244,6 +262,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="o"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -256,6 +275,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="p"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -279,6 +299,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="a"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -291,6 +312,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="s"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -303,6 +325,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="d"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -315,6 +338,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="f"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -327,6 +351,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="g"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -339,6 +364,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="h"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -351,6 +377,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="j"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -363,6 +390,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="k"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -375,6 +403,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="l"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -423,6 +452,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="z"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -435,6 +465,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="x"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -447,6 +478,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="c"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -459,6 +491,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="v"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -471,6 +504,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="b"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -483,6 +517,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="n"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -495,6 +530,7 @@
             android:layout_weight="1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="m"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -544,6 +580,7 @@
             android:layout_weight="2.1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="@"
             android:textColor="#000000"
             android:textSize="15sp" />
@@ -570,6 +607,7 @@
             android:layout_weight="2.1"
             android:background="@drawable/rectdraw"
             android:gravity="center"
+            android:onClick="redirectClickEvent"
             android:text="."
             android:textColor="#000000"
             android:textSize="15sp" />

@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,10 +23,13 @@ import android.widget.Toast;
 
 import com.example.balvirjha.bankingkeyboard.adapter.IntroPagerAdapter;
 import com.ibm.bankingkeyboard.TextKeyboardService;
+import com.ibm.bankingkeyboard.adapter.CustomContactListAdapter;
 import com.ibm.bankingkeyboard.adapter.TextPagerAdapter;
 import com.klinker.android.emoji_keyboard_trial.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.TreeSet;
 
 /**
  * Created by BalvirJha on 06-01-2018.
@@ -48,7 +50,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
     private TextView skipOrDone;
     private ListView mobile_list;
     ArrayList<String> StoreContacts;
-    ArrayAdapter<String> arrayAdapter;
+    private CustomContactListAdapter customContactListAdapter;
     Cursor cursor;
     String name, phonenumber;
     View topLayout, intropagesLayout;
@@ -98,11 +100,20 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         StoreContacts = new ArrayList<>();
         GetContactsIntoArrayList();
         if (StoreContacts != null) {
-            arrayAdapter = new ArrayAdapter<String>(
-                    context,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, StoreContacts);
+            customContactListAdapter = new CustomContactListAdapter(context);
+            Collections.sort(StoreContacts);
 
-            mobile_list.setAdapter(arrayAdapter);
+            TreeSet<String> nameUnique = new TreeSet<>();
+            for (String name : StoreContacts) {
+                if (!nameUnique.contains(name.substring(0, 1).toUpperCase())) {
+                    nameUnique.add(name.substring(0, 1).toUpperCase());
+                    customContactListAdapter.addSectionHeaderItem(nameUnique.last());
+                }
+
+                customContactListAdapter.addItem(name);
+            }
+
+            mobile_list.setAdapter(customContactListAdapter);
         } else {
 
         }
@@ -122,8 +133,14 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
             }
         });
         pagerSlidingTabStrip = (EditText) layout.findViewById(R.id.emojiCategorytab);
-        pagerSlidingTabStrip = (EditText) layout.findViewById(R.id.emojiCategorytab);
         pagerSlidingTabStrip.clearFocus();
+        pagerSlidingTabStrip.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                v.setText(event.getCharacters());
+                return true;
+            }
+        });
         pagerSlidingTabStrip.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +153,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
                 }
             }
         });
+
         pagerSlidingTabStrip.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -144,8 +162,6 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
                 //introPagerAdapter.setHeight(850);
             }
         });
-
-        //pagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
 
         textPagerAdapter = new TextPagerAdapter(context, viewPager, height);
         introPagerAdapter = new IntroPagerAdapter(context, introPager, height);
@@ -225,6 +241,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         viewPager.refreshDrawableState();
     }
 
+
     private void setupDeleteButton() {
 
         Button delete = (Button) layout.findViewById(R.id.deleteButton);
@@ -251,7 +268,7 @@ public class TextKeyboardViewNew extends View implements SharedPreferences.OnSha
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
 
-        Log.d("emojiKeyboardView", width + " : " + height);
+        Log.e("emojiKeyboardView", width + " : " + height);
         setMeasuredDimension(width, height);
     }
 
